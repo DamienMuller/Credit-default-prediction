@@ -59,16 +59,16 @@ Logistic Regression,over_under,0.313197,0.167435
 Logistic Regression,over_under,0.470611,0.245399
 Logistic Regression,over_under,0.698343,0.569892
 Logistic Regression,over_under,0.912385,0.832822
-Logistic Regression,smote,0.03422,0.009202
-Logistic Regression,smote,0.080614,0.026114
-Logistic Regression,smote,0.123611,0.052147
-Logistic Regression,smote,0.175159,0.073733
-Logistic Regression,smote,0.240926,0.090491
-Logistic Regression,smote,0.320656,0.121352
-Logistic Regression,smote,0.4287,0.156682
-Logistic Regression,smote,0.592033,0.253067
-Logistic Regression,smote,0.791975,0.565284
-Logistic Regression,smote,0.945265,0.832822
+Logistic Regression,smote,0.031969,0.010736
+Logistic Regression,smote,0.079469,0.024578
+Logistic Regression,smote,0.123192,0.053681
+Logistic Regression,smote,0.175328,0.072197
+Logistic Regression,smote,0.240355,0.087423
+Logistic Regression,smote,0.31941,0.124424
+Logistic Regression,smote,0.426635,0.167435
+Logistic Regression,smote,0.589782,0.246933
+Logistic Regression,smote,0.789,0.568356
+Logistic Regression,smote,0.943218,0.825153
 LDA,baseline,0.006912,0.013804
 LDA,baseline,0.014393,0.030722
 LDA,baseline,0.022292,0.058282
@@ -129,16 +129,16 @@ LDA,over_under,0.267937,0.162826
 LDA,over_under,0.444596,0.257669
 LDA,over_under,0.70769,0.580645
 LDA,over_under,0.926398,0.814417
-LDA,smote,0.02987,0.009202
-LDA,smote,0.066277,0.02765
-LDA,smote,0.103422,0.055215
-LDA,smote,0.151076,0.076805
-LDA,smote,0.214588,0.088957
-LDA,smote,0.293674,0.101382
-LDA,smote,0.404305,0.168971
-LDA,smote,0.575457,0.251534
-LDA,smote,0.787439,0.574501
-LDA,smote,0.946555,0.826687
+LDA,smote,0.02947,0.009202
+LDA,smote,0.066266,0.02765
+LDA,smote,0.104303,0.056748
+LDA,smote,0.152588,0.075269
+LDA,smote,0.216082,0.092025
+LDA,smote,0.294972,0.110599
+LDA,smote,0.404216,0.16129
+LDA,smote,0.573634,0.25
+LDA,smote,0.784284,0.576037
+LDA,smote,0.944746,0.822086
 Decision Tree,baseline,0.0,0.016026
 Decision Tree,baseline,0.011061,0.015119
 Decision Tree,baseline,0.040391,0.047761
@@ -191,12 +191,82 @@ Decision Tree,over_under,0.14808,0.100686
 Decision Tree,over_under,0.197197,0.106109
 Decision Tree,over_under,0.306143,0.177914
 Decision Tree,over_under,0.894565,0.802317
-Decision Tree,smote,0.0,0.009595
-Decision Tree,smote,0.017629,0.030675
-Decision Tree,smote,0.067016,0.054545
-Decision Tree,smote,0.105949,0.082942
-Decision Tree,smote,0.143142,0.065549
-Decision Tree,smote,0.217093,0.092086
-Decision Tree,smote,0.261609,0.119122
-Decision Tree,smote,0.408072,0.15486
-Decision Tree,smote,0.892661,0.795856
+Decision Tree,smote,0.0,0.010672
+Decision Tree,smote,0.014378,0.025522
+Decision Tree,smote,0.059408,0.055163
+Decision Tree,smote,0.097261,0.058161
+Decision Tree,smote,0.163827,0.090226
+Decision Tree,smote,0.243242,0.067771
+Decision Tree,smote,0.315284,0.135135
+Decision Tree,smote,0.405292,0.158974
+Decision Tree,smote,0.899601,0.802308
+Gradient Boosting,baseline,0.001477,0.0
+Gradient Boosting,baseline,0.007875,0.006144
+Gradient Boosting,baseline,0.02152,0.018405
+Gradient Boosting,baseline,0.034181,0.03533
+Gradient Boosting,baseline,0.049656,0.055215
+Gradient Boosting,baseline,0.071569,0.079877
+Gradient Boosting,baseline,0.105337,0.116743
+Gradient Boosting,baseline,0.181182,0.187117
+Gradient Boosting,baseline,0.656967,0.682028
+Gradient Boosting,baseline,0.991967,1.0
+Gradient Boosting,transform,0.001477,0.0
+Gradient Boosting,transform,0.007875,0.006144
+Gradient Boosting,transform,0.02152,0.018405
+Gradient Boosting,transform,0.034181,0.03533
+Gradient Boosting,transform,0.049656,0.055215
+Gradient Boosting,transform,0.071569,0.079877
+Gradient Boosting,transform,0.105337,0.116743
+Gradient Boosting,transform,0.181182,0.187117
+Gradient Boosting,transform,0.656967,0.682028
+Gradient Boosting,transform,0.991967,1.0
+Gradient Boosting,class_weight,0.002409,0.0
+Gradient Boosting,class_weight,0.017929,0.004608
+Gradient Boosting,class_weight,0.057862,0.018405
+Gradient Boosting,class_weight,0.093062,0.050691
+Gradient Boosting,class_weight,0.131641,0.047546
+Gradient Boosting,class_weight,0.186499,0.064516
+Gradient Boosting,class_weight,0.266539,0.132104
+Gradient Boosting,class_weight,0.40746,0.185583
+Gradient Boosting,class_weight,0.800437,0.677419
+Gradient Boosting,class_weight,0.994143,1.0
+Gradient Boosting,oversample,0.000474,0.0
+Gradient Boosting,oversample,0.004586,0.003072
+Gradient Boosting,oversample,0.018068,0.026074
+Gradient Boosting,oversample,0.036021,0.038402
+Gradient Boosting,oversample,0.059099,0.047546
+Gradient Boosting,oversample,0.097458,0.073733
+Gradient Boosting,oversample,0.166196,0.095238
+Gradient Boosting,oversample,0.312711,0.203988
+Gradient Boosting,oversample,0.79823,0.69278
+Gradient Boosting,oversample,0.998871,1.0
+Gradient Boosting,undersample,0.003537,0.0
+Gradient Boosting,undersample,0.023615,0.006144
+Gradient Boosting,undersample,0.06509,0.016871
+Gradient Boosting,undersample,0.105665,0.043011
+Gradient Boosting,undersample,0.155023,0.062883
+Gradient Boosting,undersample,0.216505,0.067588
+Gradient Boosting,undersample,0.308366,0.110599
+Gradient Boosting,undersample,0.474399,0.207055
+Gradient Boosting,undersample,0.841429,0.666667
+Gradient Boosting,undersample,0.993695,1.0
+Gradient Boosting,over_under,0.000326,0.001534
+Gradient Boosting,over_under,0.002749,0.006144
+Gradient Boosting,over_under,0.011222,0.023006
+Gradient Boosting,over_under,0.024271,0.041475
+Gradient Boosting,over_under,0.043031,0.047546
+Gradient Boosting,over_under,0.073565,0.069124
+Gradient Boosting,over_under,0.130295,0.09831
+Gradient Boosting,over_under,0.262281,0.20092
+Gradient Boosting,over_under,0.773007,0.69278
+Gradient Boosting,over_under,0.998683,1.0
+Gradient Boosting,smote,0.000627,0.0
+Gradient Boosting,smote,0.005056,0.004608
+Gradient Boosting,smote,0.016117,0.030675
+Gradient Boosting,smote,0.030216,0.032258
+Gradient Boosting,smote,0.049189,0.056748
+Gradient Boosting,smote,0.075709,0.087558
+Gradient Boosting,smote,0.120363,0.104455
+Gradient Boosting,smote,0.216235,0.165644
+Gradient Boosting,smote,0.721295,0.698925
+Gradient Boosting,smote,0.99672,1.0

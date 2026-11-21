@@ -13,7 +13,7 @@ from credit_risk.evaluate import cv_scores, fit_tuned_models, test_scores
 from credit_risk.pipelines import MODELS, REMEDIES
 
 ARTIFACTS = Path("artifacts")
-PD_MODELS = {"pd_logistic.joblib": ("Logistic Regression", "baseline"), "pd_tree.joblib": ("Decision Tree", "baseline")}
+PD_MODELS = {"pd_logistic.joblib": ("Logistic Regression", "baseline"), "pd_boosting.joblib": ("Gradient Boosting", "baseline")}
 
 
 def save_csv(df, name):
