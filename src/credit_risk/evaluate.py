@@ -1,6 +1,7 @@
 """Cross-validated comparison on the training set and single evaluation on the test set."""
 
 import pandas as pd
+from joblib import Parallel, delayed
 from sklearn.metrics import (
     average_precision_score,
     brier_score_loss,
@@ -71,8 +72,14 @@ def test_metrics(fitted, X, y):
 
 
 def fit_tuned_models(X_train, y_train, models, remedies):
-    """Fit every threshold-tuned model/remedy pair on the training set, keyed by (model, remedy)."""
-    return {(name, remedy): tuned_model(name, remedy).fit(X_train, y_train) for name in models for remedy in remedies}
+    """Fit every threshold-tuned model/remedy pair on the training set in parallel, keyed by (model, remedy).
+
+    Fitting in worker processes matters for gradient boosting: joblib limits threads per worker,
+    whereas a single process with all threads is several times slower on this data size.
+    """
+    keys = [(name, remedy) for name in models for remedy in remedies]
+    fitted = Parallel(n_jobs=-1)(delayed(tuned_model(name, remedy).fit)(X_train, y_train) for name, remedy in keys)
+    return dict(zip(keys, fitted))
 
 
 def test_scores(fitted_models, X_test, y_test):
