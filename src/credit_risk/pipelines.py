@@ -13,6 +13,7 @@ from sklearn.preprocessing import OneHotEncoder, PowerTransformer, StandardScale
 from sklearn.tree import DecisionTreeClassifier
 
 from credit_risk.data import CATEGORICAL, NUMERIC
+from credit_risk.scorecard import build_scorecard
 
 MODELS = ["Logistic Regression", "LDA", "Decision Tree", "Gradient Boosting"]
 REMEDIES = ["baseline", "transform", "class_weight", "oversample", "undersample", "over_under", "smote"]
@@ -73,7 +74,12 @@ def smotenc_steps():
 
 
 def build_pipeline(name, remedy):
-    """Assemble preprocessing, optional resampling and the model for one model/remedy combination."""
+    """Assemble preprocessing, optional resampling and the model for one model/remedy combination.
+
+    The scorecard bins raw features itself and is only built without remedy.
+    """
+    if name == "Scorecard":
+        return build_scorecard()
     if remedy == "smote":
         steps = smotenc_steps()
     else:

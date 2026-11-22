@@ -270,3 +270,13 @@ Gradient Boosting,smote,0.120363,0.104455
 Gradient Boosting,smote,0.216235,0.165644
 Gradient Boosting,smote,0.721295,0.698925
 Gradient Boosting,smote,0.99672,1.0
+Scorecard,baseline,0.007536,0.009202
+Scorecard,baseline,0.016,0.036866
+Scorecard,baseline,0.026599,0.038344
+Scorecard,baseline,0.04262,0.070661
+Scorecard,baseline,0.067276,0.082822
+Scorecard,baseline,0.104737,0.102919
+Scorecard,baseline,0.173473,0.132104
+Scorecard,baseline,0.305586,0.26227
+Scorecard,baseline,0.559726,0.557604
+Scorecard,baseline,0.85982,0.888037

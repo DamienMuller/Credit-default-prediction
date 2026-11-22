@@ -1,0 +1,11 @@
+name,dtype,n_bins,iv,selected
+loan_percent_income,numerical,10,0.9945503632491903,True
+loan_grade,categorical,4,0.827330765657105,True
+loan_int_rate,numerical,11,0.6790955220356345,True
+person_income,numerical,8,0.5671107969899484,True
+person_home_ownership,categorical,3,0.3787034173160373,True
+loan_intent,categorical,6,0.08989928365823162,True
+loan_amnt,numerical,7,0.08852565439381666,True
+person_emp_length,numerical,8,0.06658144806805741,True
+person_age,numerical,4,0.01199730768415909,False
+cb_person_cred_hist_length,numerical,3,0.005183381319554302,False
