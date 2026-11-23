@@ -2,7 +2,7 @@
 
 ## Interactive app
 
-Explore model performance, portfolio patterns and applicant-level predictions in the **Credit Risk Lab**. The app uses the saved test results and fitted models in `artifacts/`.
+Explore model performance and portfolio patterns in the **Credit Risk Lab**. The app uses the saved test results and fitted models in `artifacts/`.
 
 ```bash
 uv sync

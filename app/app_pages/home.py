@@ -82,7 +82,7 @@ with right:
         )
 
 st.subheader("Explore the work")
-with st.grid(3, min_column_width=210, gap="small"):
+with st.grid(2, min_column_width=210, gap="small"):
     with st.container(border=True, height="stretch"):
         st.markdown(":material/analytics: **Model performance**")
         st.caption("ROC and precision-recall curves, calibration, threshold metrics, and imbalance experiments.")
@@ -91,9 +91,5 @@ with st.grid(3, min_column_width=210, gap="small"):
         st.markdown(":material/query_stats: **Portfolio insights**")
         st.caption("Default rates by grade, affordability, loan purpose, home ownership, and information value.")
         st.page_link("app_pages/insights.py", label="Explore the data", icon=":material/arrow_forward:", width="stretch")
-    with st.container(border=True, height="stretch"):
-        st.markdown(":material/person_search: **Applicant sandbox**")
-        st.caption("Compare champion and scorecard PDs, points, and the largest scorecard penalties.")
-        st.page_link("app_pages/predict.py", label="Score an applicant", icon=":material/arrow_forward:", width="stretch")
 
 st.caption("Research project · Datacamp loan dataset · stratified 80/20 split · thresholds selected with 5-fold stratified cross-validation")

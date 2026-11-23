@@ -16,6 +16,6 @@ pages = [
     st.Page("app_pages/home.py", title="Home", icon=":material/home:", default=True),
     st.Page("app_pages/insights.py", title="Data insights", icon=":material/insights:"),
     st.Page("app_pages/models.py", title="Models", icon=":material/model_training:"),
-    st.Page("app_pages/predict.py", title="Predict PD", icon=":material/person_search:"),
+    # st.Page("app_pages/predict.py", title="Predict PD", icon=":material/person_search:"),  # disabled for now
 ]
 st.navigation(pages).run()
