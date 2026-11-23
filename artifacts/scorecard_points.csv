@@ -45,42 +45,42 @@ loan_percent_income,"[0.20, 0.25)",3022,0.18994,0.174194,71.044037
 loan_percent_income,"[0.25, 0.31)",1973,0.254942,-0.203776,59.851291
 loan_percent_income,"[0.31, 0.38)",1697,0.695934,-2.104214,3.573998
 loan_percent_income,"[0.38, inf)",1387,0.736842,-2.305823,-2.396222
-person_home_ownership,"<StringArray>
+person_home_ownership,"<ArrowStringArray>
 ['OWN']
 Length: 1, dtype: str",2046,0.072336,1.27514,99.617978
-person_home_ownership,"<StringArray>
+person_home_ownership,"<ArrowStringArray>
 ['MORTGAGE']
 Length: 1, dtype: str",10702,0.125584,0.664378,83.460991
-person_home_ownership,"<StringArray>
+person_home_ownership,"<ArrowStringArray>
 ['RENT', 'OTHER']
 Length: 2, dtype: str",13311,0.315078,-0.499718,52.666239
-loan_intent,"<StringArray>
+loan_intent,"<ArrowStringArray>
 ['VENTURE']
 Length: 1, dtype: str",4604,0.149218,0.464544,86.07431
-loan_intent,"<StringArray>
+loan_intent,"<ArrowStringArray>
 ['EDUCATION']
 Length: 1, dtype: str",5138,0.173998,0.281352,78.112982
-loan_intent,"<StringArray>
+loan_intent,"<ArrowStringArray>
 ['PERSONAL']
 Length: 1, dtype: str",4434,0.200947,0.104181,70.41329
-loan_intent,"<StringArray>
+loan_intent,"<ArrowStringArray>
 ['HOMEIMPROVEMENT']
 Length: 1, dtype: str",2859,0.26163,-0.238689,55.512446
-loan_intent,"<StringArray>
+loan_intent,"<ArrowStringArray>
 ['MEDICAL']
 Length: 1, dtype: str",4838,0.266226,-0.262347,54.48433
-loan_intent,"<StringArray>
+loan_intent,"<ArrowStringArray>
 ['DEBTCONSOLIDATION']
 Length: 1, dtype: str",4186,0.281414,-0.338746,51.164071
-loan_grade,"<StringArray>
+loan_grade,"<ArrowStringArray>
 ['A']
 Length: 1, dtype: str",8609,0.100592,0.914456,96.202441
-loan_grade,"<StringArray>
+loan_grade,"<ArrowStringArray>
 ['B']
 Length: 1, dtype: str",8405,0.164783,0.34686,77.385034
-loan_grade,"<StringArray>
+loan_grade,"<ArrowStringArray>
 ['C']
 Length: 1, dtype: str",5167,0.208438,0.058162,67.813906
-loan_grade,"<StringArray>
+loan_grade,"<ArrowStringArray>
 ['D', 'E', 'F', 'G']
 Length: 4, dtype: str",3878,0.608045,-1.715307,9.018459

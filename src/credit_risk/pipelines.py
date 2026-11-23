@@ -16,16 +16,23 @@ from credit_risk.data import CATEGORICAL, NUMERIC
 from credit_risk.scorecard import build_scorecard
 
 MODELS = ["Logistic Regression", "LDA", "Decision Tree", "Gradient Boosting"]
+# PD falls with income and rises with loan-to-income: stops boosting from memorizing exact values with odd default rates.
+MONOTONIC = {"person_income": -1, "loan_percent_income": 1}
 REMEDIES = ["baseline", "transform", "class_weight", "oversample", "undersample", "over_under", "smote"]
 
 
 def preprocessor(transform):
     """Impute and scale numerics (Yeo-Johnson if transform, else standardize) and one-hot encode categoricals."""
     scaler = PowerTransformer(method="yeo-johnson") if transform else StandardScaler()
-    return ColumnTransformer([
-        ("num", make_pipeline(SimpleImputer(strategy="mean"), scaler), NUMERIC),
-        ("cat", OneHotEncoder(drop="first"), CATEGORICAL),
-    ])
+    return ColumnTransformer(
+        [("num", make_pipeline(SimpleImputer(strategy="mean"), scaler), NUMERIC), ("cat", one_hot(), CATEGORICAL)],
+        verbose_feature_names_out=False,
+    ).set_output(transform="pandas")
+
+
+def one_hot():
+    """Dense one-hot encoder, so column names reach the model and monotonic constraints can refer to them."""
+    return OneHotEncoder(drop="first", sparse_output=False)
 
 
 def model(name, balanced=False):
@@ -42,6 +49,7 @@ def model(name, balanced=False):
     return HistGradientBoostingClassifier(
         learning_rate=0.03, max_leaf_nodes=63, min_samples_leaf=20, l2_regularization=1.0,
         max_iter=1000, early_stopping=True, random_state=1, class_weight="balanced" if balanced else None,
+        monotonic_cst=MONOTONIC,
     )
 
 
@@ -69,7 +77,9 @@ def smotenc_steps():
         [("num", make_pipeline(SimpleImputer(strategy="mean"), StandardScaler()), NUMERIC), ("cat", "passthrough", CATEGORICAL)],
         verbose_feature_names_out=False,
     ).set_output(transform="pandas")
-    encode = ColumnTransformer([("cat", OneHotEncoder(drop="first"), CATEGORICAL)], remainder="passthrough")
+    encode = ColumnTransformer(
+        [("cat", one_hot(), CATEGORICAL)], remainder="passthrough", verbose_feature_names_out=False
+    ).set_output(transform="pandas")
     return [("scale", scale), ("smotenc", SMOTENC(categorical_features=CATEGORICAL, random_state=1)), ("encode", encode)]
 
 
