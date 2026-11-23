@@ -17,3 +17,7 @@ __pycache__/
 
 # Personal notes
 Knowledge Base/
+
+# Agent skill links created by Streamlit (point into .venv)
+.agents/
+.claude/

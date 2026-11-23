@@ -1,5 +1,16 @@
 # Credit default prediction with class imbalance
 
+## Interactive app
+
+Explore model performance, portfolio patterns and applicant-level predictions in the **Credit Risk Lab**. The app uses the saved test results and fitted models in `artifacts/`.
+
+```bash
+uv sync
+uv run streamlit run app/streamlit_app.py
+```
+
+The app opens on an executive overview, then links to model comparisons, data insights and an applicant sandbox. Applicant scores are research outputs from this dataset and are not lending decisions.
+
 ## TLDR
 - Logistic regression, linear discriminant analysis (LDA), a decision tree and gradient boosting are compared with several class imbalance remedies, using stratified cross-validation and a held-out test set.
 - Tuned gradient boosting is the best model: Gini 0.88, KS 0.74 and average precision 0.89 on the test set, vs. 0.83, 0.69 and 0.85 for a tuned decision tree and approx. 0.74, 0.60 and 0.71-0.72 for logistic regression and LDA.
