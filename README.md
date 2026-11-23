@@ -3,6 +3,7 @@
 ## TLDR
 - Logistic regression, linear discriminant analysis (LDA), a decision tree and gradient boosting are compared with several class imbalance remedies, using stratified cross-validation and a held-out test set.
 - Tuned gradient boosting is the best model: Gini 0.88, KS 0.74 and average precision 0.89 on the test set, vs. 0.83, 0.69 and 0.85 for a tuned decision tree and approx. 0.74, 0.60 and 0.71-0.72 for logistic regression and LDA.
+- A WoE scorecard, the transparent model banks typically deploy, reaches Gini 0.76 and average precision 0.76: better ranked and calibrated than logistic regression, at the cost of 0.12 Gini vs. gradient boosting.
 - Class imbalance remedies (class weights, over-/downsampling, SMOTE) do not improve how loans are ranked by risk for any algorithm, and they inflate the predicted probabilities of default (PD): up to 38% mean PD for an actual default rate of 21.8%.
 
 ## Objective
@@ -21,6 +22,7 @@ Lenders use such models to estimate the probability that an applicant defaults. 
 | **Pre-processing** | Mean imputation of missing values, standardization or Yeo-Johnson transform of numerical features, one-hot encoding. All steps are fitted inside the pipeline on training data only. |
 | **Learning process** | Stratified 80/20 train/test split. Models are compared, hyperparameters and thresholds tuned with 5-fold stratified cross-validation on the training set. The test set is used once at the end. |
 | **Algorithms** | Logistic regression, LDA (default hyperparameters, confirmed optimal by grid search), decision tree (max depth 12, min. 25 loans per leaf) and gradient boosting (`HistGradientBoostingClassifier`: learning rate 0.03, max. 63 leaves, min. 20 loans per leaf, L2 1.0, early stopping), tuned by grid search |
+| **Scorecard** | `optbinning`: optimal monotonic binning, weight of evidence (WoE) logistic regression, 600 points at odds 50:1 and 20 points to double the odds. Features with information value below 0.02 are dropped, and the previous-default flag is excluded for its wrong-sign coefficient. |
 | **Variations** | Baseline (standardization), Transform (Yeo-Johnson), and five remedies on standardized features: Class weights, Oversampling, Downsampling, Over- + Downsampling, SMOTE (SMOTENC variant, which keeps categories valid). Resampling runs inside an imblearn pipeline, so it only affects training folds. |
 | **Thresholds** | For every model, the threshold maximizing the F-score is selected by cross-validation on the training set (`TunedThresholdClassifierCV`). |
 | **Evaluation** | Ranking: Gini, KS, average precision (PR AP). Calibration: Brier score, mean PD vs. actual default rate, calibration curves. Classification: F-score, sensitivity (defaults), precision, specificity (non-defaults). |
@@ -61,6 +63,7 @@ CV PR AP: mean ± std over 5 folds on the training set. All other columns: test 
 |  | Downsampling | 0.891 ± 0.005 | 0.880 | 0.741 | 0.889 | 0.079 | 31.9% |
 |  | Over- + Downsampling | 0.898 ± 0.006 | 0.884 | 0.744 | 0.895 | 0.058 | 23.2% |
 |  | SMOTE | 0.899 ± 0.006 | 0.879 | 0.745 | 0.893 | 0.056 | 22.3% |
+| **Scorecard** | Baseline | 0.770 ± 0.004 | 0.764 | 0.629 | 0.755 | 0.096 | 21.6% |
 
 ### Classification
 
@@ -94,6 +97,7 @@ CV PR AP: mean ± std over 5 folds on the training set. All other columns: test 
 |  | Downsampling | 0.81 | 0.783 | 0.801 | 0.694 | 0.947 | 0.989 |
 |  | Over- + Downsampling | 0.62 | 0.816 | 0.816 | 0.722 | 0.938 | 0.987 |
 |  | SMOTE | 0.60 | 0.821 | 0.822 | 0.717 | 0.962 | 0.992 |
+| **Scorecard** | Baseline | 0.38 | 0.680 | 0.698 | 0.685 | 0.711 | 0.922 |
 
 ### Calibration curves (test set)
 
@@ -104,6 +108,7 @@ Without remedy (thick line), predicted PDs match observed default rates. Remedie
 ## Key findings
 - **Gradient boosting ranks loans best.** It reaches a CV average precision of 0.900, vs. 0.853 for the tuned decision tree and 0.71-0.73 for the linear models. Tuning its hyperparameters matters little (0.894-0.900 over the whole grid).
 - **Limiting tree complexity matters for a single tree.** It raises the tree's CV average precision from 0.61 (unlimited tree) to 0.85.
+- **A scorecard trades some performance for transparency.** Binning captures non-linear effects within each feature, so the scorecard beats logistic regression on standardized features (Gini 0.764 vs. 0.738, Brier 0.096 vs. 0.103) with only 8 features and a readable points table. Gradient boosting, which also models interactions between features, remains clearly better (Gini 0.882).
 - **Remedies do not improve ranking.** For every algorithm, the CV average precision of the remedies is within approx. 0.01 of the baseline.
 - **Remedies distort PD.** They inflate the mean predicted PD strongly for the linear models (29-38% vs. 21.8% actual), moderately for the decision tree (27-33%) and, depending on the remedy, for gradient boosting (22-32%). They never meaningfully improve the Brier score. Models trained on the original class partition are well calibrated (mean PD 20.9-21.7%).
 - **Threshold tuning is the better remedy.** To classify loans, tuning the threshold reaches F-scores similar to resampling without distorting PD, e.g. baseline logistic regression goes from 0.65 at the 0.5 cutoff to 0.68.
