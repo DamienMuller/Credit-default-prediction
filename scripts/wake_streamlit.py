@@ -33,12 +33,11 @@ def click_wake_button(page) -> bool:
 
 
 def wait_until_ready(page) -> None:
-    # Streamlit renders these containers when the app frontend is available.
-    page.locator('[data-testid="stAppViewContainer"]').wait_for(
-        state="visible",
-        timeout=180_000,
-    )
-    page.locator('[data-testid="stMain"]').wait_for(
+    page.get_by_role(
+        "heading",
+        name="Class imbalance in PD modelling",
+        exact=False,
+    ).wait_for(
         state="visible",
         timeout=180_000,
     )
