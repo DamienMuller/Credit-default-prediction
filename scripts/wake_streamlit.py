@@ -33,13 +33,16 @@ def click_wake_button(page) -> bool:
 
 
 def wait_until_ready(page) -> None:
-    page.get_by_role(
-        "heading",
-        name="Class imbalance in PD modelling",
-        exact=False,
-    ).wait_for(
+    page.wait_for_load_state("networkidle", timeout=180_000)
+
+    page.locator('[data-testid="stAppViewContainer"]').wait_for(
         state="visible",
-        timeout=180_000,
+        timeout=30_000,
+    )
+
+    page.get_by_text("Please wait", exact=False).wait_for(
+        state="hidden",
+        timeout=30_000,
     )
 
 
