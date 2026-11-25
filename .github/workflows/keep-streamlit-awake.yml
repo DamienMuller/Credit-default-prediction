@@ -1,0 +1,40 @@
+name: Keep Streamlit Awake
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Install Playwright
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Wake Streamlit app
+        env:
+          STREAMLIT_APP_URL: ${{ vars.STREAMLIT_APP_URL }}
+        run: python scripts/wake_streamlit.py
+
+      - name: Upload screenshot on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wake-streamlit-screenshot
+          name: wake-streamlit-screenshot
+          path: wake-streamlit.png
+          if-no-files-found: ignore
